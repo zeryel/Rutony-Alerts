@@ -3,7 +3,29 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
+
+<script>
+    $(document).ready(function() {
+        var ListOfFrames = Array(),
+                container = $('#alerts');
+
+        ListOfFrames.push('1.html');
+        ListOfFrames.push('2.html');
+        ListOfFrames.push('3.html');
+
+        function renderIfarme(array)
+        {
+            $.each(array, function(key, value) {
+                var iframe = $('<iframe />').attr({"src": value, "frameborder": 0, "scrolling": "no", "seamless": ""});
+                iframe.appendTo(container);
+            });
+        }
+
+        renderIfarme(ListOfFrames);
+    });
+</script>
 
 <style>
     body {
@@ -14,7 +36,7 @@
         height: 100%;
     }
 
-    .alerts iframe {
+    #alerts iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -24,10 +46,6 @@
 </style>
 
 <body>
-<div class="alerts">
-    <iframe src="subs.html" scrolling="no" frameborder="0" seamless></iframe>
-    <iframe src="follow.html" scrolling="no" frameborder="0" seamless></iframe>
-    <iframe src="donate.html" scrolling="no" frameborder="0" seamless></iframe>
-</div>
+<div id="alerts"></div>
 </body>
 </html>
